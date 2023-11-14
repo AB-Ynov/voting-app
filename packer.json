@@ -1,0 +1,15 @@
+{
+  "builders": [
+    {
+      "type": "docker",
+      "image": "ubuntu:latest",
+      "commit": true
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "ansible",
+      "playbook_file": "deploy.yml"
+    }
+  ]
+}
