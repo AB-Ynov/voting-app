@@ -15,8 +15,8 @@
     },
     {
       "type": "ansible",
-      "playbook_file": "/opt/voting-app/deploy.yml",
-      "extra_arguments": ["-e", "ansible_connection=local"]
+      "extra_arguments": ["--connection", "local"],
+      "playbook_file": "/opt/voting-app/deploy.yml"
     }
   ]
 }
