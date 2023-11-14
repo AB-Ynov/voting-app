@@ -21,5 +21,6 @@ jobs:
 
       - name: Build and push Docker image
         run: |
+          cd /workspaces/voting-app
           docker build -t abynov/voting-app:latest .
           docker push abynov/voting-app:latest
