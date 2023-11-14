@@ -1,0 +1,16 @@
+---
+- name: Deploy Voting App
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Bootstrap Python
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+
+    - name: Clone GitHub repository
+      git:
+        repo: https://github.com/AB-Ynov/voting-app.git
+        dest: /opt/voting-app
+
+    - name: Install dependencies
+      command: pip install -r /opt/voting-app/requirements.txt
