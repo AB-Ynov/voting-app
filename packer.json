@@ -10,6 +10,10 @@
   ],
   "provisioners": [
     {
+      "type": "shell",
+      "script": "test -f /opt/voting-app/deploy.yml"
+    },
+    {
       "type": "ansible",
       "playbook_file": "/opt/voting-app/deploy.yml"
     }
