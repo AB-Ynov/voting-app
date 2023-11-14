@@ -20,5 +20,3 @@ jobs:
       - name: Unit test
         run: |
           # Ajoutez votre commande de test unitaire ici
-
-      # BONUS - Ajoutez les tests de charge et de stress avec k6.io ici
