@@ -11,8 +11,7 @@
   "provisioners": [
     {
       "type": "ansible",
-      "playbook_file": "/opt/voting-app/deploy.yml",
-      "ansible_connection": "local"
+      "playbook_file": "/opt/voting-app/deploy.yml"
     }
   ]
 }
