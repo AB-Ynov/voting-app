@@ -1,17 +1,17 @@
 {
   "builders": [
-  {
-  "type": "docker",
-  "image": "ubuntu:latest",
-  "commit": true,
-  "ssh_pty": true,
-  "ssh_port": 22
-  }
+    {
+      "type": "docker",
+      "image": "ubuntu:latest",
+      "commit": true,
+      "ssh_pty": true,
+      "ssh_port": 22
+    }
   ],
   "provisioners": [
     {
       "type": "ansible",
-      "playbook_file": "deploy.yml"
+      "playbook_file": "/opt/voting-app/deploy.yml"
     }
   ]
 }
