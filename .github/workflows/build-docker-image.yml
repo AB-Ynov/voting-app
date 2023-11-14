@@ -24,3 +24,6 @@ jobs:
 
       - name: Push Docker image
         run: docker push abynov/voting-app:latest
+
+      - name: List Docker images
+        run: docker images
