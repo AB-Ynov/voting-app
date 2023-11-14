@@ -11,7 +11,7 @@
   "provisioners": [
     {
       "type": "shell",
-      "inline": ["test -f /opt/voting-app/deploy.yml"]
+      "inline": ["ls -la /opt/voting-app/deploy.yml"]
     },
     {
       "type": "ansible",
