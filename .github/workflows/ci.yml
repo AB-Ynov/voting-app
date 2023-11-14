@@ -12,6 +12,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.sha }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          submodules: recursive
+          persist-credentials: false
 
       - name: Lint Python code
         run: |
@@ -29,5 +34,3 @@ jobs:
 
       - name: Push Docker image
         run: docker push abynov/voting-app:latest
-
-
