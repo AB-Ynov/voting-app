@@ -21,5 +21,5 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t your-docker-username/your-docker-repo:latest .
-          docker push your-docker-username/your-docker-repo:latest
+          docker build -t abynov/voting-app:latest .
+          docker push abynov/voting-app:latest
