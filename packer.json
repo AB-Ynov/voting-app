@@ -7,16 +7,5 @@
       "ssh_pty": true,
       "ssh_port": 22
     }
-  ],
-  "provisioners": [
-    {
-      "type": "shell",
-      "inline": ["ls -la /opt/voting-app/"]
-    },
-    {
-      "type": "ansible",
-      "extra_arguments": ["--connection", "local"],
-      "playbook_file": "/opt/voting-app/deploy.yml"
-    }
   ]
 }
