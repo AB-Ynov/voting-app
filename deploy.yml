@@ -14,3 +14,10 @@
 
     - name: Install dependencies
       command: pip install -r /opt/voting-app/requirements.txt
+
+    - name: Provisioning with Ansible
+  ansible_connection: local
+  tasks:
+    - name: "Execute Ansible playbook"
+      command: ansible-playbook -e packer_build_name="docker" -e packer_builder_type=docker -e ansible_ssh_private_key_file=/tmp/ansible-key86810211 -i /tmp/packer-provisioner-ansible2117713205 /home/runner/work/voting-app/voting-app/deploy.yml
+      
