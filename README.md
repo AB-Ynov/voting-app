@@ -1,38 +1,37 @@
-## Writing tests
+## Rédaction des tests
 
-To make sure my app is ready for a production workload I have to test at least:
+Pour m'assurer que mon application est prête pour une charge de travail en production, je dois tester au moins :
 
-1. My code is in compliance with conventions (public or company conventions)
-2. My code doesn't have an identified security breach (I don't want to expose my customer data)
-3. I'm able to execute my code in a controlled environment 
-4. I'm able to make a request to get vote (I must have a 200 code as return on my GET request), since i'm in a controlled environment I must have 0 for each categories
-5. I'm able to make a request to publish vote (I must have a 200 code as return on my POST request), since i'm in a controlled environment I must have 1 for the one i've voted and 0 to the other
+1. Que mon code est conforme aux conventions (conventions publiques ou d'entreprise).
+2. Que mon code ne présente aucune faille de sécurité identifiée (je ne veux pas exposer les données de mes clients).
+3. Que je suis capable d'exécuter mon code dans un environnement contrôlé.
+4. Que je suis capable de faire une requête pour obtenir un vote (je dois obtenir un code 200 en réponse à ma requête GET), puisque je suis dans un environnement contrôlé, je dois obtenir 0 pour chaque catégorie.
+5. Que je suis capable de faire une requête pour publier un vote (je dois obtenir un code 200 en réponse à ma requête POST), puisque je suis dans un environnement contrôlé, je dois obtenir 1 pour celui pour lequel j'ai voté et 0 pour les autres.
 
 ## Workflows
 
-### Open Pull Request
+### Ouverture d'une pull request
 
-This workflow works when you're working on differents branches, and you want to merge your branch with ```main```
+Ce workflow est déclenché lorsque vous travaillez sur différentes branches et que vous souhaitez fusionner votre branche avec ```main```.
 
-1. Pull Request is Opened
-2. I'm checking if the code respect the Python convention using Flake8 (Because I'm respecting python writing conventions)
-3. I'm checking if there is any CVEs opened, to make sure my code is secure. The last thing I want is to send security breach on my production environment
-4. I'm making sure in a controlled environment (Here using docker-compose), my system is working as expected and i'm able to interact it
-5. If and only if, all these requirements are meet, I'm able to merge into main my code
+1. Une pull request est ouverte.
+2. Je vérifie si le code respecte les conventions Python en utilisant Flake8 (car je respecte les conventions d'écriture Python).
+3. Je vérifie s'il y a des CVE ouverts, pour m'assurer que mon code est sécurisé. La dernière chose que je veux, c'est d'envoyer une faille de sécurité sur mon environnement de production.
+4. Je m'assure que dans un environnement contrôlé (ici en utilisant docker-compose), mon système fonctionne comme prévu et que je peux interagir avec lui.
+5. Si, et seulement si, toutes ces exigences sont satisfaites, je suis en mesure de fusionner mon code dans ```main```.
 
 ![Flow](docs/Simplon-PR-Opened-Workflow.drawio.svg)
 
-### Merge Pull Request
+### Fusion d'une pull request
 
-This workflow will be triggered when a reviewer or my self gonna click on the merge button
+Ce workflow sera déclenché lorsqu'un examinateur ou moi-même cliquerons sur le bouton de fusion.
 
-1. Semantic release bot is triggered, it analyze commit messages to calculate the version number, when done, it publish a version on github https://www.conventionalcommits.org/en/v1.0.0/
-2. I'm logging in my Docker Registry to being able to push my Docker image
-3. I'm preparing the environment to being able to build my Dockerfile
-4. I'm building my Dockerfile and name it using this format  ```<Docker Registry>/<Repository Name>:<Semantic Release version>``` (eg. joffreydupire/simplon-vote-app:v1.0.0)
-then i'm pushing it to the registry.
-5. Finally using ```helm upgrade``` command I'm deploying my Azure-Vote-App workload into my K8s cluster
+1. Le robot de version sémantique est déclenché, il analyse les messages de commit pour calculer le numéro de version. Une fois terminé, il publie une version sur GitHub https://www.conventionalcommits.org/en/v1.0.0/.
+2. Je me connecte à mon registre Docker pour pouvoir pousser mon image Docker.
+3. Je prépare l'environnement pour pouvoir construire mon Dockerfile.
+4. Je construis mon Dockerfile et le nomme en utilisant ce format ```<Registre Docker>/<Nom du référentiel>:<Version de la version sémantique>``` (par exemple, joffreydupire/simplon-vote-app:v1.0.0), puis je le pousse vers le registre.
+5. Enfin, en utilisant la commande ```helm upgrade```, je déploie ma charge de travail Azure-Vote-App dans mon cluster K8s.
 
-> NOTES: From there, I could decide to deploy a canary or used a Blue/Green line 
+> NOTES: À partir de là, je pourrais décider de déployer un canary ou d'utiliser une ligne Blue/Green.
 
 ![Flow](docs/Simplon-PR-Merged-Flow.drawio.svg)
