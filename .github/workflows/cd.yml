@@ -19,4 +19,5 @@ jobs:
 
       - name: Unit test
         run: |
-          # Ajoutez votre commande de test unitaire ici
+          pip install -r requirements.txt
+          pytest
