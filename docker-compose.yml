@@ -5,12 +5,3 @@ services:
     image: abynov/voting-app:latest
     ports:
       - "8080:8080"
-    depends_on:
-      - db
-
-  db:
-    image: postgres:13
-    environment:
-      POSTGRES_DB: mydatabase
-      POSTGRES_USER: mydatabaseuser
-      POSTGRES_PASSWORD: mydatabasepassword
