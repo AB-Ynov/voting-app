@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Lint Python code
+        run: |
+          # Ajoutez votre commande de linter ici
+
+      - name: Security check
+        run: |
+          # Ajoutez votre commande de vérification de sécurité ici
+
+      - name: Build Packer image
+        run: packer build packer.json
+
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Push Docker image
+        run: docker push your_docker_image:tag
