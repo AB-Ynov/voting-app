@@ -12,6 +12,7 @@
     {
       "type": "ansible",
       "playbook_file": "/opt/voting-app/deploy.yml"
+      "ansible_connection": "local"
     }
   ]
 }
