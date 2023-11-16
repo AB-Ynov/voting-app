@@ -1,0 +1,29 @@
+- name: Provision Python
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Boostrap python
+      raw: test -e /usr/bin/python3 || (apt-get -y update && apt-get install -y python3 python3-pip python3-apt)
+
+- name: "[SETUP] Install nginx"
+  hosts: all
+  tasks:
+
+  - name: "Get all packages installed"
+    package_facts:
+      manager: auto
+
+  - name: "Install Nginx server if missing"
+    apt:
+      name: nginx
+      state: present
+    when: "'nginx' not in ansible_facts.packages"
+
+  - name: "Add index.html"
+    copy:
+      src: index.html
+      dest: /usr/share/nginx/html/index.html
+      
+  #- name: Show facts available on the system
+  #  ansible.builtin.debug:
+  #    var: ansible_facts.packages
