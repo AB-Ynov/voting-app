@@ -11,25 +11,6 @@ packer {
   }
 }
 
-variable "docker_username" {
-  type = string
-  sensitive = true
-  default = "to_replace"
-}
-variable "docker_pat" {
-  type = string
-  sensitive = true
-  default = "to_replace"
-}
-variable "semantic_release_version" {
-  type = string
-  default = "to_replace"
-}
-variable "repository" {
-  type = string
-  default = "to_replace"
-}
-
 source "docker" "ubuntu" {
   image  = "ubuntu:latest"
   commit = true
@@ -52,14 +33,14 @@ build {
 
   post-processors {
     post-processor "docker-tag" {
-      repository = "${var.docker_username}/${var.repository}"
-      tags = ["${var.semantic_release_version}-packer"]
+      repository = "joffreydupire/build-voting-app"
+      tags = ["latest"]
     }
 
     post-processor "docker-push" {
       login = true
-      login_username = "${var.docker_username}"
-      login_password = "${var.docker_pat}"
+      login_username = "joffreydupire"
+      login_password = "mettre_token_pat"
     }
   }
 }
