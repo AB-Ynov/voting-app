@@ -1,1 +1,19 @@
+---
+# tasks file for deps
 
+- name: Check python for ubuntu
+  import_tasks: ubuntu.yml
+  when: ansible_facts['os_family']|lower == 'ubuntu'
+
+- name: Check python for alpine
+  import_tasks: alpine.yml
+  when: ansible_facts['os_family']|lower == 'alpine'
+
+- name: check packages
+  package_facts:
+    manager: auto
+
+- name: Install dependancies
+  pip:
+    name: "{{ pip_packages }}"
+  when: "'python3-pip' in ansible_facts.packages or 'py3-pip' in ansible_facts.packages" 

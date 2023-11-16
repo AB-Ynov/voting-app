@@ -1,0 +1,6 @@
+- name: Make sure python is installed on Ubuntu
+  apt:
+    state: present
+    name: python3
+  when: ansible_facts['distribution'] == "Ubuntu"
+  register: installed_ubuntu
