@@ -1,0 +1,26 @@
+---
+- name: Installation et configuration de Nginx
+  hosts: mon_groupe
+  become: true
+  tasks:
+    - name: Install git
+      apt:
+        name: git
+        state: present
+
+    - name: Clone the repository
+      git:
+        repo: https://github.com/AB-Ynov/voting-app.git
+        dest: /opt/voting-app
+
+    - name: Build the Docker image
+      docker_image:
+        path: /opt/voting-app
+        name: abynov/voting-app
+        tag: latest
+
+    - name: Push the Docker image
+      docker_image:
+        name: abynov/voting-app
+        tag: latest
+        push: yes
