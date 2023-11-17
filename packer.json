@@ -9,3 +9,27 @@
     }
   ]
 }
+
+{
+  "variables": {
+    "docker_image_name": "abynov/voting-app"
+  },
+  "builders": [
+    {
+      "type": "docker",
+      "image": "docker.io/library/ubuntu:20.04",
+      "export_path": "{{user `docker_image_name`}}.tar"
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "docker-tag",
+      "repository": "{{user `docker_image_name`}}",
+      "tag": "latest"
+    },
+    {
+      "type": "docker-push",
+      "name": "{{user `docker_image_name`}}"
+    }
+  ]
+}
