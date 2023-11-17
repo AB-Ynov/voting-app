@@ -20,7 +20,7 @@ jobs:
         run: docker buildx create --use && docker buildx build --platform linux/amd64,linux/arm64 -t abynov/voting-app:latest .
 
       - name: Login to Docker Hub
-        run: echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
+        run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password ${{ secrets.DOCKER_HUB_TOKEN }}
 
       - name: Push Docker Image
         run: docker push abynov/voting-app:latest
